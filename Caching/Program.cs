@@ -14,6 +14,10 @@ builder.Services.AddDbContext<CachingContext>(
     options => options.UseSqlite("Name=ToysDB")
 );
 
+builder.Services.AddStackExchangeRedisCache(
+    options => options.Configuration = builder.Configuration["Cache:Redis"]
+);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
